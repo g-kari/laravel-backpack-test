@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# This script sets up a new Laravel project with Backpack CRUD installed
+echo "Setting up Laravel with Backpack CRUD in Docker..."
 
 # Navigate to the working directory
 cd /var/www
@@ -172,11 +172,25 @@ class ProductRequest extends FormRequest
 }
 EOL
 
-# Create a user for accessing the admin panel
-php artisan backpack:user --name="Admin User" --email=admin@example.com --****** Set proper permissions
+# Create a user for accessing the admin panel using a custom command to avoid escaping issues
+php -r "echo shell_exec('php artisan backpack:user --name=\"Admin User\" --email=admin@example.com --******');"
+
+# Add some sample data
+php artisan tinker << 'EOL'
+use App\Models\Product;
+Product::create(['name' => 'Product 1', 'description' => 'This is product 1', 'price' => 19.99, 'quantity' => 10]);
+Product::create(['name' => 'Product 2', 'description' => 'This is product 2', 'price' => 29.99, 'quantity' => 20]);
+Product::create(['name' => 'Product 3', 'description' => 'This is product 3', 'price' => 39.99, 'quantity' => 30]);
+exit
+EOL
+
+# Set proper permissions
 chown -R www:www .
 find . -type f -exec chmod 644 {} \;
 find . -type d -exec chmod 755 {} \;
+
+# Make storage and bootstrap cache writable
+chmod -R 775 storage bootstrap/cache
 
 echo "Laravel with Backpack CRUD has been set up successfully!"
 echo "You can access the admin panel at: http://localhost/admin"
