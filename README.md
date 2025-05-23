@@ -1,8 +1,8 @@
-# Statamic-test
+# Laravel Backpack Test
 
 ## Docker Development Environment
 
-This repository includes a complete Docker-based development environment with PHP-FPM, Nginx, MySQL, and Valkey (Redis fork).
+This repository includes a complete Docker-based development environment with PHP-FPM, Nginx, MySQL, and Valkey (Redis fork) set up for Laravel Backpack.
 
 ### Prerequisites
 
@@ -13,8 +13,8 @@ This repository includes a complete Docker-based development environment with PH
 
 1. Clone this repository:
    ```
-   git clone https://github.com/g-kari/Statamic-test.git
-   cd Statamic-test
+   git clone https://github.com/g-kari/laravel-backpack-test.git
+   cd laravel-backpack-test
    ```
 
 2. Start the Docker containers:
@@ -22,15 +22,15 @@ This repository includes a complete Docker-based development environment with PH
    docker-compose up -d
    ```
 
-3. Access the application in your browser:
+3. Access the Laravel Backpack admin interface in your browser:
    ```
-   http://localhost
+   http://localhost/admin
    ```
 
 ### Environment Details
 
-- **PHP-FPM**: PHP 8.2 with common extensions required for Laravel/Statamic
-- **Nginx**: Latest stable version configured to serve PHP applications
+- **PHP-FPM**: PHP 8.2 with common extensions required for Laravel
+- **Nginx**: Latest stable version configured to serve Laravel applications
 - **MySQL**: Version 8.0 with persistent storage
 - **Valkey**: Redis-compatible in-memory data store
 
@@ -38,14 +38,21 @@ This repository includes a complete Docker-based development environment with PH
 
 - Host: `localhost` (from host) or `db` (from containers)
 - Port: `3306`
-- Username: `statamic`
+- Username: `backpack`
 - Password: `secret`
-- Database: `statamic`
+- Database: `laravel_backpack`
 
 ### Valkey Connection
 
 - Host: `localhost` (from host) or `valkey` (from containers)
 - Port: `6379`
+
+### Laravel Backpack Admin Panel
+
+- URL: `http://localhost/admin`
+- Default Credentials:
+  - Email: `admin@example.com`
+  - Password: `password`
 
 ### Troubleshooting
 
