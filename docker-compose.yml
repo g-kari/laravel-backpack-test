@@ -16,7 +16,7 @@ services:
 
   # Nginx Service
   web:
-    image: nginx:1.25
+    image: nginx:1.29
     container_name: laravel-backpack-nginx
     restart: unless-stopped
     ports:
